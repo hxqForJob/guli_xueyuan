@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guli.teacher.mapper.EduPublishMapper">
+    <select id="getPublishInfo"  parameterType="String" resultType="java.util.HashMap">
+select c.`title` title, c.`lesson_num` lessNum, c.`price` price,c.`cover` cover,t.`name` teacherName,ps.`title` parentSubject,s.`title` subject
+from edu_course c
+left join edu_course_description ecd on c.`id`=ecd.`id`
+left join edu_teacher t on c.`teacher_id`=t.`id`
+LEFT JOIN edu_subject ps on c.`subject_parent_id` =ps.id
+left join edu_subject s on c.`subject_id`=s.`id`
+where c.id=#{id}
+
+    </select>
+</mapper>
